@@ -18,9 +18,7 @@ Copy the following files to your project:
 
 ## Usage
 
-Create your master and detail views separately. Optionally create a placeholder for the detail side when no detail is selected.
-
-Make sure they can edit a bindable bool for showing/hiding the detail side.
+Create your master and detail views separately. Make sure they can edit a bindable bool for showing/hiding the detail side when in stack mode.
 
 ```swift
 import SwiftUI
@@ -81,9 +79,8 @@ struct ContentView: View {
     
     var body: some View {
         MasterDetailView(showingDetail: $showingDetail,
-                          master: { MasterView(showingDetail: self.$showingDetail) },
-                          detail: { DetailView(showingDetail: self.$showingDetail) },
-                          placeholder: { PlaceholderView() })
+                         master: { MasterView(showingDetail: self.$showingDetail) },
+                         detail: { DetailView(showingDetail: self.$showingDetail) })
     }
     
 }

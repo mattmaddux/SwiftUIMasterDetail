@@ -10,24 +10,22 @@ import SwiftUI
 import SwiftUIDevice
 
 
-struct MasterDetailView<Master, Detail, Placeholder>: View where Master: View, Detail: View, Placeholder: View  {
+public struct MasterDetailView<Master, Detail>: View where Master: View, Detail: View  {
     
-    @Binding var showingDetail: Bool
+    @Binding private var showingDetail: Bool
     private let quickSlideAnimation: Animation = Animation.linear(duration: 0.2)
     private let master: () -> Master
     private let detail: () -> Detail
-    private let placeholder: () -> Placeholder?
     
     
 
-    init(showingDetail: Binding<Bool>, @ViewBuilder master: @escaping () -> Master, @ViewBuilder detail: @escaping () -> Detail, @ViewBuilder placeholder: @escaping () -> Placeholder? = { nil }) {
+    public init(showingDetail: Binding<Bool>, @ViewBuilder master: @escaping () -> Master, @ViewBuilder detail: @escaping () -> Detail) {
         self._showingDetail = showingDetail
         self.master = master
         self.detail = detail
-        self.placeholder = placeholder
     }
 
-    var body: some View {
+    public var body: some View {
         WindowReader { windowClass in
             GeometryReader{ geometry in
                 if windowClass == .veryNarrow {
@@ -46,13 +44,8 @@ struct MasterDetailView<Master, Detail, Placeholder>: View where Master: View, D
                             .frame(width: self.masterPanelWidth(forWindowClass: windowClass))
                             .frame(maxHeight: .infinity)
                         Divider()
-                        if self.placeholder() != nil && !self.showingDetail {
-                            self.placeholder()
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        } else {
-                            self.detail()
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        }
+                        self.detail()
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                     }
                 }
             }
