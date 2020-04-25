@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftUIDevice",
+        "repositoryURL": "https://github.com/mattmaddux/SwiftUIDevice",
+        "state": {
+          "branch": null,
+          "revision": "54b797cfc096e153291929eea97afce671c43829",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
