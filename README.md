@@ -39,8 +39,6 @@ struct MasterView: View {
     
 }
 
-
-
 struct DetailView: View {
     
     @Binding var showingDetail: Bool
@@ -53,15 +51,6 @@ struct DetailView: View {
             }
         }.background(Color.green)
     }
-}
-
-struct PlaceholderView: View {
-    
-    var body: some View {
-        Image(systemName: "doc")
-            .background(Color.blue)
-    }
-    
 }
 ```
 
